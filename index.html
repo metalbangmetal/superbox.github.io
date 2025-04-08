@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Superbox – Coming Soon</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    .menu {
+      color: #E76F51;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .brand {
+      color: #E76F51;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .hero-section {
+      width: 100%;
+      height: 100vh;
+      background: url('images/bg.png') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background: rgba(231, 111, 81, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+      flex-wrap: wrap;
+      position: relative;
+      max-width: 90vw;
+    }
+
+    .icon {
+      padding: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      color: #ffffff;
+      font-size: 2.5rem;
+    }
+
+    .icon:hover, .icon.active {
+      transform: scale(1.3);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+    }
+
+    .icon-info {
+      width: 100%;
+      max-width: 600px;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px;
+      background: rgba(231, 111, 81, 0.9);
+      border-radius: 12px;
+      text-align: center;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.5s, max-height 0.5s ease-in-out;
+    }
+
+    .icon-info.show {
+      opacity: 1;
+      max-height: 240px;
+      margin-top: 20px;
+    }
+
+    .icon-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    .tagline {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      width: 100%;
+     
+      padding: 60px 20px;
+     
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+      margin: 0;
+    }
+
+    .about {
+      width: 100%;
+      background: rgba(230, 107, 77, 0.95);
+      padding: 80px 20px;
+      color: #ffffff;
+    }
+
+    .about h2 {
+      font-size: 4.8rem;
+      margin-bottom: 40px;
+      color: #bd5238;
+    }
+
+    .about p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .partners {
+      display:inline;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      color: #E76F51;
+      padding: 60px 20px;
+      width: 100%;
+      gap: 200px;
+    }
+
+    .partners h2 {
+      font-size: 8.8rem;
+      margin-bottom: 40px;
+      color: #bd5238;
+    }
+
+    .partners img {
+      height: 300px;
+      object-fit: contain;
+    }
+
+  
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .tagline { font-size: 1.8rem; padding: 24px 12px; }
+      .icon { flex-wrap: wrap; padding: 15px; gap: 2px; font-size: 2.2rem;}
+      .icons { flex-wrap: wrap; padding: 15px; gap: 2px; }
+      .brand { font-size: 1.5rem; }
+      .partners { flex-direction: column; gap: 30px; }
+      .partners img { height: 160px; }
+      
+    }
+    .contact-banner {
+      width: 100%;
+      background: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      color: #252525;
+    }
+
+    .contact-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-banner p {
+      font-size: 1.1rem;
+    }
+
+    .contact-banner a {
+      color: #E76F51;
+      text-decoration: underline;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <header>
+    <div class="menu"><i class="fa-solid fa-bars"></i></div>
+    <div class="brand">SUPERBOX</div>
+  </header>
+
+  <section class="hero-section">
+    <div class="icons">
+      <div class="icon" data-key="retail"><i class="fa-solid fa-shop"></i></div>
+      <div class="icon" data-key="cafe"><i class="fa-solid fa-mug-saucer"></i></div>
+      <div class="icon" data-key="charging"><i class="fa-solid fa-charging-station"></i></div>
+      <div class="icon" data-key="ads"><i class="fa-solid fa-bullhorn"></i></div>
+      <div class="icon" data-key="solar"><i class="fa-solid fa-solar-panel"></i></div>
+      <div id="info" class="icon-info" style="background: rgba(231, 111, 81, 0.95); padding: 30px; border-radius: 16px; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35); text-align: left; line-height: 1.6; font-size: 1rem; color: #fff; max-width: 700px;overflow-y: visible;"></div>
+
+      
+    </div>
+  </section>
+
+  
+
+  <section class="about" style="background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="tagline">"The Smartest Stop in the City. Energy, groceries, food, and flow—under one bold roof."</div>
+    <h2>What is SUPERBOX?</h2>
+    <p>Superbox is the next-gen convenience hub engineered for seamless urban life. Whether you're fueling your car, charging your EV, grabbing a coffee, picking up groceries, or advertising to a local audience — Superbox does it all, effortlessly. Built to connect people and machines in a unified space, we are shaping the future of city stops.</p>
+    <img src="images/container.png" alt="Superbox Preview" style="width: 100%; max-width: 1600px; margin-top: 4px; border-radius: 10px;">
+
+  </section>
+
+  <div class="partners">
+    <h1>FRICTIONLESS PARTNERS</h1>
+    <img src="images/swiggy-logo.png" alt="Swiggy Logo">
+    <img src="images/statiq-logo.png" alt="Statiq Logo">
+  </div>
+
+  <section class="contact-banner">
+    <p>Email us at <a href="mailto:contact@thesuperbox.in">contact@thesuperbox.in</a>    or call   +91-95000-44798</p>
+  </section>
+
+
+  <script>
+    const infoContent = {
+      retail: { title: "Smart Retail", desc: "Superbox redefines smart retail by blending instant digital convenience with physical accessibility. Through our self-service kiosks, automated fulfillment, and modular design, we offer a seamless “order, wait, pick-up” experience. It’s retail that thinks fast, acts faster—powered by Swiggy Instamart, designed for EV drivers, highway commuters, and local shoppers. No queues. No clutter. Just pure, efficient commerce." },
+      cafe: { title: "Smart Café", desc: "The Smart Café at Superbox is built for speed, flavor, and simplicity. With a compact, tech-driven setup, it serves up fresh dosas, grilled sandwiches, waffles, and signature beverages—all crafted fast, with minimal staff and zero fuss. Whether you're charging your EV or grabbing a quick bite on the go, Smart Café turns every pit stop into a tasty, frictionless experience. It's convenience, caffeinated." },
+      charging: { title: "EV Charging Hub", desc: "The EV Charging Hub at Superbox is more than just a plug point—it's a smart pit-stop for the future. With 4 fast-charging bays and seamless payment integration, Superbox offers EV drivers a premium, stress-free charging experience. While your vehicle powers up, you can grab a snack, sip a coffee, or place a quick grocery order—making every minute count. It's where mobility meets modern utility." },
+      ads: { title: "LED Billboard OOH", desc: "The LED Billboard at Superbox turns heads and drives visibility—literally. Positioned for maximum exposure along NH-66, it serves as a dynamic out-of-home (OOH) advertising platform. From showcasing Superbox promotions to leasing space to brands, it monetizes attention during peak traffic hours. It’s not just a sign—it’s a smart screen that earns, informs, and amplifies the Superbox presence." },
+      solar: { title: "Solar Energy", desc: "Superbox harnesses the power of the sun to stay light on the planet and lighter on the bills. With rooftop solar panels integrated into its design, the hub powers its operations sustainably—fueling the café, dark store, and support systems while offsetting EV charging costs. It’s clean energy with a clear ROI, reinforcing Superbox’s commitment to future-forward, eco-conscious infrastructure." }
+    };
+
+    function showInfo(key, element) {
+      document.querySelectorAll('.icon').forEach(icon => icon.classList.remove('active'));
+      element.classList.add('active');
+      const infoBox = document.getElementById('info');
+      infoBox.innerHTML = `<h3>${infoContent[key].title}</h3><p>${infoContent[key].desc}</p>`;
+      infoBox.classList.add('show');
+    }
+  </script>
+
+
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".hero-section", {
+    scrollTrigger: {
+      trigger: ".hero-section",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1
+  });
+
+  gsap.from(".icons", {
+    scrollTrigger: {
+      trigger: ".icons",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1
+  });
+
+
+  gsap.from(".tagline", {
+    scrollTrigger: {
+      trigger: ".tagline",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1
+  });
+
+  gsap.from(".about h2", {
+    scrollTrigger: {
+      trigger: ".about h2",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2
+  });
+
+  gsap.from(".about p", {
+    scrollTrigger: {
+      trigger: ".about p",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4
+  });
+
+  gsap.from(".partners h2", {
+    scrollTrigger: {
+      trigger: ".partners h2",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2
+  });
+
+  gsap.from(".partners img", {
+    scrollTrigger: {
+      trigger: ".partners",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1
+  });
+
+ 
+
+  gsap.from(".about img", {
+    scrollTrigger: {
+      trigger: ".about img",
+      start: "top 90%",
+      toggleActions: "play reverse play reverse"
+    },
+    scale: 0.9,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6
+  });
+  // Auto trigger each icon in sequence WITH info box showing
+const icons = document.querySelectorAll('.icon');
+const infoBox = document.getElementById('info');
+
+let autoCycleIndex = 0;
+
+function triggerIcon(index) {
+  const icon = icons[index];
+  icon.classList.add('active');
+  const key = icon.dataset.key;
+  infoBox.innerHTML = `<h3>${infoContent[key].title}</h3><p>${infoContent[key].desc}</p>`;
+  infoBox.classList.add('show');
+
+  gsap.fromTo(icon,
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.5,
+      ease: 'power2.out',
+      onComplete: () => {
+        setTimeout(() => {
+          icon.classList.remove('active');
+          infoBox.classList.remove('show');
+          autoCycleIndex = (index + 1) % icons.length;
+          triggerIcon(autoCycleIndex);
+        }, 1200);
+      }
+    }
+  );
+}
+
+
+;
+
+gsap.delayedCall(1, () => triggerIcon(0));
+  ;
+  // Parallax scroll effect for hero section background
+  gsap.to(".hero-section", {
+    backgroundPositionY: "50%",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      start: "top top",
+      end: "bottom top",
+      scrub: true
+    }
+  });
+</script>
+</body>
+</html>
+
